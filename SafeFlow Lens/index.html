@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>SafeFlow Lens</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+
+<body>
+  <header class="hero">
+    <nav class="navbar">
+      <div class="logo">SafeFlow Lens</div>
+
+      <div class="nav-links">
+        <a href="#about">소개</a>
+        <a href="#data">데이터</a>
+        <a href="#result">분석결과</a>
+        <a href="heatmap.html">히트맵</a>
+        <a href="#tech">구현과정</a>
+      </div>
+    </nav>
+
+    <section class="hero-content">
+      <div>
+        <p class="tag">Public Data Safety Visualization Platform</p>
+        <h1>공공데이터 기반<br />생활시설 교통위험도 시각화</h1>
+        <p class="desc">
+          초·중·고등학교, 학원, 교습소, 공공도서관 등 학생 생활시설과
+          교통사고 다발지역 데이터를 결합하여 생활권 단위의 위험도를 분석합니다.
+        </p>
+        <div class="hero-buttons">
+          <a href="#result" class="btn">분석 결과 보기</a>
+          <a href="heatmap.html" class="btn secondary">히트맵 보기</a>
+        </div>
+      </div>
+
+      <div class="hero-card">
+        <h3>위험도 분석 개요</h3>
+
+        <p>분석 지역</p>
+        <strong>대전광역시 서구</strong>
+
+        <p>분석 시설</p>
+        <strong>1,582개 생활시설</strong>
+
+        <p>분석 방식</p>
+        <strong>행정동 기준 생활권 매칭</strong>
+      </div>
+    </section>
+  </header>
+
+  <main>
+    <section id="about" class="section">
+      <h2>SafeFlow Lens란?</h2>
+      <p>
+        SafeFlow Lens는 어린이보호구역에 한정하지 않고, 학생들이 실제로 많이 이동하는
+        학원, 교습소, 도서관 등 생활시설 주변의 교통위험도를 분석하는 웹 기반 프로토타입입니다.
+        본 프로젝트는 AI 완성 서비스가 아니라, 공공데이터 분석 결과를 시민이 쉽게 이해할 수 있도록
+        시각화하는 데이터 기반 안전 플랫폼을 목표로 합니다.
+      </p>
+    </section>
+
+    <section id="data" class="section dark">
+      <h2>활용 데이터</h2>
+
+      <div class="grid">
+        <div class="card">
+          <h3>교육시설 위치 데이터</h3>
+          <p>
+            대전광역시 서구 초등학교·중학교·고등학교 위치 현황을 활용하여
+            학생 이동의 기준 시설을 설정했습니다.
+          </p>
+        </div>
+
+        <div class="card">
+          <h3>학원 및 교습소 현황</h3>
+          <p>
+            동부·서부교육지원청의 학원 및 교습소 현황을 활용하여
+            어린이보호구역 밖 학생 생활권을 반영했습니다.
+          </p>
+        </div>
+
+        <div class="card">
+          <h3>공공도서관 현황</h3>
+          <p>
+            대전광역시 공공도서관 데이터를 활용하여 학생들이 이용할 수 있는
+            학습 생활시설을 추가했습니다.
+          </p>
+        </div>
+
+        <div class="card">
+          <h3>교통사고 다발지역 데이터</h3>
+          <p>
+            전국교통사고다발지역표준데이터 중 대전 서구 사고다발지역을 추출하여
+            위험도 산출에 반영했습니다.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <section id="method" class="section">
+      <h2>분석 방법</h2>
+
+      <div class="process">
+        <div>1. 생활시설 데이터 수집</div>
+        <div>2. 사고다발지역 데이터 추출</div>
+        <div>3. 주소에서 행정동 추출</div>
+        <div>4. 같은 행정동 기준 매칭</div>
+        <div>5. 위험도 점수 계산</div>
+        <div>6. R 기반 그래프 시각화</div>
+      </div>
+
+      <p class="note">
+        본 분석은 좌표 기반 정밀 거리 계산이 아니라, 같은 행정동에 위치한 생활시설과
+        사고다발지역을 같은 생활권으로 보고 연결한 상대적 위험도 분석입니다.
+      </p>
+    </section>
+
+    <section id="result" class="section dark">
+      <h2>분석 결과</h2>
+
+      <div class="result-summary">
+        <div class="summary-box">
+          <span>TOP 행정동</span>
+          <strong>괴정동</strong>
+          <p>평균 교통위험도 최상위</p>
+        </div>
+
+        <div class="summary-box">
+          <span>주요 위험 시설</span>
+          <strong>학원·교습소</strong>
+          <p>학교 밖 학생 생활권 위험도 확인</p>
+        </div>
+
+        <div class="summary-box">
+          <span>분석 관점</span>
+          <strong>생활권 단위</strong>
+          <p>행정동 기준 상대 위험도 비교</p>
+        </div>
+      </div>
+
+      <div class="graph-box">
+        <h3>행정동별 평균 교통위험도 TOP 10</h3>
+        <img src="img/graph_dong_risk_top10.png" alt="행정동별 평균 교통위험도 TOP 10" />
+      </div>
+
+      <div class="graph-box">
+        <h3>시설 유형별 평균 교통위험도</h3>
+        <img src="img/graph_facility_type_risk.png" alt="시설 유형별 평균 교통위험도" />
+      </div>
+
+      <div class="graph-box">
+        <h3>위험도 상위 생활시설 TOP 10</h3>
+        <img src="img/graph_top10_facility.png" alt="위험도 상위 생활시설 TOP 10" />
+      </div>
+    </section>
+
+    <section id="heatmap-preview" class="section">
+      <h2>위험도 히트맵</h2>
+      <p>
+        사고다발지역 좌표와 위험도 점수를 활용하여 생활시설 주변의 위험도 분포를
+        지도 위에 시각화했습니다. 히트맵은 특정 시설 앞의 실제 사고위험을 단정하는 것이 아니라,
+        대전 서구 생활권 단위의 상대적 위험 분포를 보여주는 프로토타입입니다.
+      </p>
+
+      <div class="heatmap-preview-box">
+        <div>
+          <h3>생활시설 주변 위험도 지도</h3>
+          <p>
+            사고건수, 사상자수, 시설 이용 규모를 반영한 위험도 점수를 기반으로
+            위험도가 높은 지역을 지도상에 강조합니다.
+          </p>
+        </div>
+        <a href="heatmap.html" class="btn">히트맵 페이지 열기</a>
+      </div>
+    </section>
+
+    <section id="tech" class="section dark">
+      <h2>기술 구현 과정</h2>
+      <p>
+        R을 활용하여 공공데이터를 통합하고, 사고건수·사상자수·시설 이용 규모를 바탕으로
+        위험도 점수를 계산했습니다. 이후 ggplot2로 그래프를 제작하고,
+        HTML/CSS/JavaScript 기반 웹사이트에 시각화 결과를 삽입했습니다.
+      </p>
+
+      <div class="formula">
+        위험도 점수 = 사고건수 × 0.45 + 사상자수 × 0.35 + log(시설 이용 규모 + 1) × 0.20
+      </div>
+    </section>
+
+    <section class="section">
+      <h2>고도화 계획</h2>
+
+      <div class="grid light-grid">
+        <div class="card light-card">
+          <h3>XGBoost</h3>
+          <p>
+            날씨, 시간대, 사고 이력 등을 활용한 교통위험도 예측 모델로 확장합니다.
+          </p>
+        </div>
+
+        <div class="card light-card">
+          <h3>LSTM</h3>
+          <p>
+            하교 시간, 학원 종료 시간 등 시간 흐름에 따른 위험도 변화 예측을 추가합니다.
+          </p>
+        </div>
+
+        <div class="card light-card">
+          <h3>지도 API</h3>
+          <p>
+            좌표 기반 거리 계산과 실제 지도 히트맵 시각화 기능을 고도화합니다.
+          </p>
+        </div>
+
+        <div class="card light-card">
+          <h3>실시간 알림</h3>
+          <p>
+            위험도가 높은 생활권에 대한 사용자 맞춤형 안전 알림 기능을 제공합니다.
+          </p>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <p>SafeFlow Lens | Public Data Based Traffic Risk Visualization</p>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
